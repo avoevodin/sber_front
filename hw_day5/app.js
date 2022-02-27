@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const { v4: uuidv4 } = require('uuid')
 const { db } = require('./DB')
 
 const PORT = 3000
@@ -29,6 +30,7 @@ app.post('/addpost', (req, res) => {
   const currentDate = new Date()
 
   formData.date = `${currentDate.toDateString()} ${currentDate.toLocaleTimeString()}`
+  formData.id = uuidv4()
   db.posts.push(formData)
 
   res.redirect('/')
