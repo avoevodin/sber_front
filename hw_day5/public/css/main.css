@@ -1,0 +1,11 @@
+.like-dislike {
+    color:sandybrown;
+}
+
+.like-dislike__thumb {
+    cursor: pointer;
+}
+
+.username-title {
+    color:royalblue
+}

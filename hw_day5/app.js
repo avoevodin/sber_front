@@ -12,6 +12,7 @@ app.set('views', path.join(process.env.PWD, 'src', 'views'))
 
 // this setting allows express to receive form data
 app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(process.env.PWD, 'public')))
 
 app.get('/', (req, res) => {
   const usersQuery = req.query
