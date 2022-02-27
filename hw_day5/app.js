@@ -8,7 +8,7 @@ const PORT = 3000
 const app = express()
 
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'src', 'views'))
+app.set('views', path.join(process.env.PWD, 'src', 'views'))
 
 // this setting allows express to receive form data
 app.use(express.urlencoded({ extended: true }))
