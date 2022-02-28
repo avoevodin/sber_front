@@ -34,6 +34,7 @@ app.post('/addpost', (req, res) => {
 
   formData.date = `${currentDate.toDateString()} ${currentDate.toLocaleTimeString()}`
   formData.id = uuidv4()
+  formData.rating = 0
   db.posts.push(formData)
 
   res.redirect('/')
