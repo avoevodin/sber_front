@@ -1,8 +1,5 @@
-.like-dislike {
+.like-thumb {
     color:sandybrown;
-}
-
-.like-dislike__thumb {
     cursor: pointer;
 }
 
