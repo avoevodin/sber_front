@@ -1,0 +1,15 @@
+body {
+    background-color: whitesmoke !important;
+}
+
+.chatWr {
+    height: 400px;
+    background: white;
+    overflow-y: scroll;
+    border: 1px solid #777;
+    border-radius: 10px;
+}
+
+.w-400 {
+    width: 400px;
+}
