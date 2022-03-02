@@ -4,6 +4,24 @@ const $signUpWr = document.querySelector('[data-signupwr]')
 const $send = document.querySelector('[data-send]')
 const $textInput = document.querySelector('[data-text')
 const $avatar = document.querySelector('[data-avatar]')
+const $messages = document.querySelector('[data-messages]')
+
+function generateMessageTemplate(message) {
+  return `
+        <div class="messageWr">
+        <img src="${message.avatar}" alt="avatar" class="avatar">
+        <div class="dataWr">
+            <div class="messageInfo">
+                <span class="messageAuthorName">${message.name}</span>
+                <span class="messageDate">${message.date}</span>
+            </div>
+            <p class="messageText">
+                 ${message.text}
+            </p>
+        </div>
+        </div>
+    `
+}
 
 $signUp.addEventListener('click', (e) => {
   const person = {
@@ -26,24 +44,26 @@ $signUp.addEventListener('click', (e) => {
     const parsedMessage = JSON.parse(e.data)
 
     switch (parsedMessage.type) {
-      case 'SignUp':
+      case 'SignUp': {
         console.log('SignUp', parsedMessage)
         break
+      }
 
-      case 'Text':
-        console.log('Text', parsedMessage)
+      case 'Text': {
+        const messageTemplate = generateMessageTemplate(parsedMessage)
+        $messages.insertAdjacentHTML('beforeend', messageTemplate)
         break
-
-      default:
+      }
+      default: {
         break
+      }
     }
   }
 
   $send.addEventListener('click', (e) => {
     socket.send(JSON.stringify({
       type: 'Text',
-      name: person.name,
-      date: Date.now(),
+      personId: person.id,
       text: $textInput.value,
     }))
   })

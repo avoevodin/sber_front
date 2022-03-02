@@ -4,8 +4,21 @@
 
 <section class="d-flex flex-column align-items-center">
     <div class="chatWr w-400">
-        <div class="chat mb-3">
-
+        <div data-messages class="chat mb-3">
+            {{#each allMessages}}
+            <div class="messageWr">
+                <img src="{{this.avatar}}" alt="avatar" class="avatar">
+                <div class="dataWr">
+                    <div class="messageInfo">
+                        <span class="messageAuthorName">{{this.name}}</span>
+                        <span class="messageDate">{{this.date}}</span>
+                    </div>
+                    <p class="messageText">
+                        {{this.text}}
+                    </p>
+                </div>
+            </div>
+            {{/each}}
         </div>
         <div data-signupwr class="d-flex flex-column align-items-center signup">
             <input data-name name="name" type="text" class="form-control mb-2" placeholder="Enter your name...">

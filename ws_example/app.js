@@ -19,8 +19,10 @@ app.get('/', (req, res) => {
   const allMessages = JSON.parse(JSON.stringify(db.chat))
   allMessages.forEach((message) => {
     const messageAuthor = db.people.find((el) => el.id === message.personId)
+    message.name = messageAuthor.name
+    message.avatar = messageAuthor.avatar
   })
-  res.render('main')
+  res.render('main', { allMessages })
 })
 
 const server = http.createServer(app)
@@ -35,7 +37,6 @@ server.on('upgrade', (request, socket, head) => {
 wss.on('connection', (ws, request) => {
   ws.on('message', (message) => {
     const parsedMessage = JSON.parse(message)
-    console.log(parsedMessage)
     switch (parsedMessage.type) {
       case 'SignUp': {
         map.set(parsedMessage.id, ws)
@@ -57,15 +58,18 @@ wss.on('connection', (ws, request) => {
       }
       case 'Text': {
         const messageAuthor = db.people.find((el) => el.id === parsedMessage.personId)
+        parsedMessage.date = Date.now()
+
+        db.chat.push(parsedMessage)
 
         map.forEach((client, clientId) => {
           if (client.readyState === WebSocket.OPEN) {
             client.send(JSON.stringify({
               type: 'Text',
               avatar: messageAuthor.avatar,
-              name: parsedMessage.name,
+              name: messageAuthor.name,
               text: parsedMessage.text,
-              date: Date.now(),
+              date: parsedMessage.date,
               isAuthor: parsedMessage.personId === clientId,
             }))
           }
