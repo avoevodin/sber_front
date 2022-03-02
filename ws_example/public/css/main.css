@@ -3,11 +3,26 @@ body {
 }
 
 .chatWr {
+    position: relative;
+}
+
+.chat {
     height: 400px;
     background: white;
     overflow-y: scroll;
     border: 1px solid #777;
     border-radius: 10px;
+}
+
+.signup {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.signup_btn {
+    /* min-width: 90px; */
 }
 
 .w-400 {

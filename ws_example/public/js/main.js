@@ -3,10 +3,12 @@ const $name = document.querySelector('[data-name]')
 const $signUpWr = document.querySelector('[data-signupwr]')
 const $send = document.querySelector('[data-send]')
 const $textInput = document.querySelector('[data-text')
+const $avatar = document.querySelector('[data-avatar]')
 
 $signUp.addEventListener('click', (e) => {
   const person = {
     id: Date.now(),
+    avatar: $avatar.value,
     name: $name.value,
   }
 

@@ -3,17 +3,18 @@
 <hr>
 
 <section class="d-flex flex-column align-items-center">
-    <div class="w-400">
-        <div class="chatWr mb-3">
+    <div class="chatWr w-400">
+        <div class="chat mb-3">
 
         </div>
-        <div data-signupwr class="d-flex">
-            <input data-name name="name" type="text" class="form-control me-2" placeholder="Enter your name...">
-            <button data-signup type="submit" class="btn btn-primary col-3">Sign up</button>
+        <div data-signupwr class="d-flex flex-column align-items-center signup">
+            <input data-name name="name" type="text" class="form-control mb-2" placeholder="Enter your name...">
+            <input data-avatar name="avatar" type="text" class="form-control mb-2" placeholder="Link to avatar...">
+            <button data-signup type="submit" class="btn btn-primary signup_btn">Sign up</button>
         </div>
         <div data-textwr class="d-flex">
-            <input data-text name="name" type="text" class="form-control me-2" placeholder="Enter your message...">
-            <button data-send type="submit" class="btn btn-primary col-3">Send</button>
+            <input data-text name="text" type="text" class="form-control me-2" placeholder="Enter your message...">
+            <button data-send type="submit" class="btn btn-primary">Send</button>
         </div>
     </div>
 </section>
