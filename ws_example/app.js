@@ -16,6 +16,10 @@ app.set('trust proxy', 1)
 app.use(express.static(path.join(process.env.PWD, 'public')))
 
 app.get('/', (req, res) => {
+  const allMessages = JSON.parse(JSON.stringify(db.chat))
+  allMessages.forEach((message) => {
+    const messageAuthor = db.people.find((el) => el.id === message.personId)
+  })
   res.render('main')
 })
 
@@ -33,33 +37,44 @@ wss.on('connection', (ws, request) => {
     const parsedMessage = JSON.parse(message)
     console.log(parsedMessage)
     switch (parsedMessage.type) {
-      case 'SignUp':
+      case 'SignUp': {
         map.set(parsedMessage.id, ws)
+
+        const clonedPerson = { ...parsedMessage }
+        delete clonedPerson.type
+        db.people.push(clonedPerson)
+
         map.forEach((client) => {
           if (client.readyState === WebSocket.OPEN) {
             client.send(JSON.stringify({
               type: 'SignUp',
               name: parsedMessage.name,
+              avatar: parsedMessage.avatar,
             }))
           }
         })
         break
-      case 'Text':
-        map.forEach((client) => {
+      }
+      case 'Text': {
+        const messageAuthor = db.people.find((el) => el.id === parsedMessage.personId)
+
+        map.forEach((client, clientId) => {
           if (client.readyState === WebSocket.OPEN) {
-            console.log(client)
             client.send(JSON.stringify({
               type: 'Text',
+              avatar: messageAuthor.avatar,
               name: parsedMessage.name,
               text: parsedMessage.text,
-              date: parsedMessage.date,
+              date: Date.now(),
+              isAuthor: parsedMessage.personId === clientId,
             }))
           }
         })
         break
-
-      default:
+      }
+      default: {
         break
+      }
     }
   })
 
