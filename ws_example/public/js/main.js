@@ -23,6 +23,12 @@ function generateMessageTemplate(message) {
     `
 }
 
+function generateConnectionMessage(message) {
+  return `
+    <p class="connect">Welcome, ${message.name}!</p>
+    `
+}
+
 $signUp.addEventListener('click', (e) => {
   const person = {
     id: Date.now(),
@@ -45,7 +51,8 @@ $signUp.addEventListener('click', (e) => {
 
     switch (parsedMessage.type) {
       case 'SignUp': {
-        console.log('SignUp', parsedMessage)
+        const messageTemplate = generateConnectionMessage(parsedMessage)
+        $messages.insertAdjacentHTML('beforeend', messageTemplate)
         break
       }
 
