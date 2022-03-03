@@ -36,6 +36,7 @@ $signUp.addEventListener('click', (e) => {
   }
 
   $signUpWr.remove()
+  $messages.classList.remove('blur')
 
   const socket = new WebSocket(window.location.origin.replace('http', 'ws'))
 

@@ -7,11 +7,16 @@ body {
 }
 
 .chat {
+    position: relative;
     height: 400px;
     background: white;
     overflow-y: scroll;
     border: 1px solid #777;
     border-radius: 10px;
+}
+
+.blur {
+   filter: blur(3 px);
 }
 
 .signup {
