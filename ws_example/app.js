@@ -19,8 +19,14 @@ app.get('/', (req, res) => {
   const allMessages = JSON.parse(JSON.stringify(db.chat))
   allMessages.forEach((message) => {
     const messageAuthor = db.people.find((el) => el.id === message.personId)
+    const options = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    }
     message.name = messageAuthor.name
     message.avatar = messageAuthor.avatar
+    message.date = new Date(message.date).toLocaleDateString('ru-RU', options)
   })
   res.render('main', { allMessages })
 })
