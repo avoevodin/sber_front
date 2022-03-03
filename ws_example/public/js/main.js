@@ -71,17 +71,16 @@ $signUp.addEventListener('click', (e) => {
         break
       }
     }
+    $messages.scrollTop = $messages.scrollHeight
   }
 
   $formSendMessage.addEventListener('submit', (event) => {
     event.preventDefault()
-    const form = event.target
     socket.send(JSON.stringify({
       type: 'Text',
       personId: person.id,
-      text: form.elements.message.value,
+      text: $formSendMessage.elements.message.value,
     }))
-    // form === $formSendMessage
-    form.reset()
+    $formSendMessage.reset()
   })
 })

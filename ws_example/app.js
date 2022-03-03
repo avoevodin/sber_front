@@ -2,8 +2,6 @@ const WebSocket = require('ws')
 const express = require('express')
 const http = require('http')
 const path = require('path')
-
-const { text } = require('express')
 const { db } = require('./DB')
 
 const PORT = process.env.PORT ?? 3000
