@@ -62,6 +62,7 @@ wss.on('connection', (ws, request) => {
 
         db.chat.push(parsedMessage)
 
+        // Why couldn 't we do like that?
         map.forEach((client, clientId) => {
           if (client.readyState === WebSocket.OPEN) {
             client.send(JSON.stringify({

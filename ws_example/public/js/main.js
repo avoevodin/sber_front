@@ -1,8 +1,7 @@
 const $signUp = document.querySelector('[data-signup]')
 const $name = document.querySelector('[data-name]')
 const $signUpWr = document.querySelector('[data-signupwr]')
-const $send = document.querySelector('[data-send]')
-const $textInput = document.querySelector('[data-text')
+const $formSendMessage = document.forms.sendMessage
 const $avatar = document.querySelector('[data-avatar]')
 const $messages = document.querySelector('[data-messages]')
 
@@ -57,6 +56,12 @@ $signUp.addEventListener('click', (e) => {
       }
 
       case 'Text': {
+        const options = {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        }
+        parsedMessage.date = new Date(parsedMessage.date).toLocaleDateString('ru-RU', options)
         const messageTemplate = generateMessageTemplate(parsedMessage)
         $messages.insertAdjacentHTML('beforeend', messageTemplate)
         break
@@ -67,11 +72,15 @@ $signUp.addEventListener('click', (e) => {
     }
   }
 
-  $send.addEventListener('click', (e) => {
+  $formSendMessage.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const form = event.target
     socket.send(JSON.stringify({
       type: 'Text',
       personId: person.id,
-      text: $textInput.value,
+      text: form.elements.message.value,
     }))
+    // form === $formSendMessage
+    form.reset()
   })
 })
