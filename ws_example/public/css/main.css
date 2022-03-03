@@ -12,11 +12,12 @@ body {
     background: white;
     overflow-y: scroll;
     border: 1px solid #777;
+    transition: all 0.2s linear;
     border-radius: 10px;
 }
 
 .blur {
-   filter: blur(3 px);
+   filter: blur(3px);
 }
 
 .signup {
