@@ -8,7 +8,7 @@ const $messages = document.querySelector('[data-messages]')
 
 function generateMessageTemplate(message) {
   return `
-        <div class="messageWr">
+        <div class="messageWr ${message.isAuthor && 'myMessage'}">
         <img src="${message.avatar}" alt="avatar" class="avatar">
         <div class="dataWr">
             <div class="messageInfo">
