@@ -12,5 +12,7 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
+    semi: ['error', 'never'],
+    'no-console': 0,
   },
-};
+}
