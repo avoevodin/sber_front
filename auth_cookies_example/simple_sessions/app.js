@@ -9,11 +9,17 @@ server.set('view engine', 'hbs')
 server.set('views', path.join(process.env.PWD, 'src', 'views'))
 hbs.registerPartials(path.join(process.env.PWD, 'src', 'views', 'partials'))
 
+server.use(express.urlencoded({ extended: true }))
+
 server.get('/', (req, res) => {
   res.render('main')
 })
 
 server.get('/auth/signup', (req, res) => {
+  res.render('signUp')
+})
+
+server.post('/auth/signup', (req, res) => {
   res.render('signUp')
 })
 
