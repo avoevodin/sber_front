@@ -13,6 +13,14 @@ server.get('/', (req, res) => {
   res.render('main')
 })
 
+server.get('/auth/signup', (req, res) => {
+  res.render('signUp')
+})
+
+server.get('/auth/signin', (req, res) => {
+  res.render('signIn')
+})
+
 server.listen(PORT, () => {
   console.log(`The server has been started on port ${PORT}`)
 })
