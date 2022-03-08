@@ -16,6 +16,17 @@ hbs.registerPartials(path.join(process.env.PWD, 'src', 'views', 'partials'))
 
 server.use(express.urlencoded({ extended: true }))
 server.use(cookieParser())
+server.use((req, res, next) => {
+  const sidFromUser = req.cookies.sid
+  const currentSession = sessions[sidFromUser]
+
+  if (currentSession) {
+    const currentUser = db.users.find((user) => user.email === currentSession.email)
+    res.locals.name = currentUser.name
+  }
+
+  next()
+})
 
 server.get('/', (req, res) => {
   res.render('main')
@@ -40,7 +51,7 @@ server.post('/auth/signup', (req, res) => {
 
   res.cookie('sid', sid, {
     httpOnly: true, // data won't be allowed from client js
-    maxAge: 6e4,
+    maxAge: 36e5,
   })
 
   res.redirect('/')
@@ -63,7 +74,7 @@ server.post('/auth/signin', (req, res) => {
 
     res.cookie('sid', sid, {
       httpOnly: true, // data won't be allowed from client js
-      maxAge: 6e4,
+      maxAge: 36e5,
     })
   }
 
