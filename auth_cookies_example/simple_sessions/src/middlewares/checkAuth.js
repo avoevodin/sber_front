@@ -8,7 +8,7 @@ const checkAuth = (req, res, next) => {
     return next()
   }
 
-  res.redirect('/auth/signin')
+  return res.redirect('/auth/signin')
 }
 
 module.exports = {
