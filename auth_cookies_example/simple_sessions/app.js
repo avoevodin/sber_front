@@ -4,10 +4,11 @@ const hbs = require('hbs')
 const { executionAsyncResource } = require('async_hooks')
 const cookieParser = require('cookie-parser')
 const { db } = require('./DB')
+const { sessions } = require('./sessions')
+const { checkAuth } = require('./src/middlewares/checkAuth')
 
 const server = express()
 const PORT = process.env.PORT || 3000
-const sessions = {}
 
 server.set('view engine', 'hbs')
 server.set('views', path.join(process.env.PWD, 'src', 'views'))
@@ -76,6 +77,10 @@ server.get('/auth/signout', (req, res) => {
 
   res.clearCookie('sid')
   res.redirect('/')
+})
+
+server.get('/secret', checkAuth, (req, res) => {
+  res.render('secret')
 })
 
 server.listen(PORT, () => {
