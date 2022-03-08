@@ -38,7 +38,7 @@ server.post('/auth/signup', (req, res) => {
     email,
   }
 
-  res.cookie('sid', {
+  res.cookie('sid', sid, {
     httpOnly: true, // data won't be allowed from client js
     maxAge: 6e4,
   })
@@ -61,7 +61,7 @@ server.post('/auth/signin', (req, res) => {
       email,
     }
 
-    res.cookie('sid', {
+    res.cookie('sid', sid, {
       httpOnly: true, // data won't be allowed from client js
       maxAge: 6e4,
     })

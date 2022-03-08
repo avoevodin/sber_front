@@ -1,5 +1,4 @@
-// const { sessions } = require('../../sessions')
-const { sessions } = require(`${process.env.PWD}/sessions`)
+const { sessions } = require('../../sessions')
 
 const checkAuth = (req, res, next) => {
   const sidFromUser = req.cookies.sid
