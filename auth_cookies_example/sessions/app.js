@@ -1,10 +1,8 @@
 const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
-const { executionAsyncResource } = require('async_hooks')
-const cookieParser = require('cookie-parser')
+const sessions = require('express-session')
 const { db } = require('./DB')
-const { sessions } = require('./sessions')
 const { checkAuth } = require('./src/middlewares/checkAuth')
 
 const server = express()
@@ -15,7 +13,7 @@ server.set('views', path.join(process.env.PWD, 'src', 'views'))
 hbs.registerPartials(path.join(process.env.PWD, 'src', 'views', 'partials'))
 
 server.use(express.urlencoded({ extended: true }))
-server.use(cookieParser())
+server.use(sessions())
 server.use((req, res, next) => {
   const sidFromUser = req.cookies.sid
   const currentSession = sessions[sidFromUser]

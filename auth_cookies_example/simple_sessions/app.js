@@ -1,7 +1,6 @@
 const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
-const { executionAsyncResource } = require('async_hooks')
 const cookieParser = require('cookie-parser')
 const { db } = require('./DB')
 const { sessions } = require('./sessions')
