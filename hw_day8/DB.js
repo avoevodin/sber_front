@@ -21,6 +21,9 @@ const db = {
       rating: 0,
     },
   ],
+  users: [
+
+  ],
 }
 
 module.exports = {
