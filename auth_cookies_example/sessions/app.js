@@ -2,12 +2,14 @@ const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
 const sessions = require('express-session')
+const bcrypt = require('bcrypt')
 const { db } = require('./DB')
 const { checkAuth } = require('./src/middlewares/checkAuth')
 
 const server = express()
 const PORT = process.env.PORT || 3000
 const secretKey = 'asdfkas;gakjg;wreajg;'
+const saltRounds = 10
 
 server.set('view engine', 'hbs')
 server.set('views', path.join(process.env.PWD, 'src', 'views'))
@@ -45,12 +47,14 @@ server.get('/auth/signup', (req, res) => {
   res.render('signUp')
 })
 
-server.post('/auth/signup', (req, res) => {
+server.post('/auth/signup', async (req, res) => {
   const { email, name, password } = req.body
+  const hashPass = await bcrypt.hash(password, saltRounds)
+
   db.users.push({
     name,
     email,
-    password,
+    password: hashPass,
   })
 
   req.session.user = {
@@ -64,11 +68,11 @@ server.get('/auth/signin', (req, res) => {
   res.render('signIn')
 })
 
-server.post('/auth/signin', (req, res) => {
+server.post('/auth/signin', async (req, res) => {
   const { email, password } = req.body
   const currentUser = db.users.find((user) => user.email === email)
 
-  if (currentUser && currentUser.password === password) {
+  if (currentUser && await bcrypt.compare(password, currentUser.password)) {
     req.session.user = {
       email,
     }
