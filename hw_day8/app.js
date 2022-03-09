@@ -1,6 +1,8 @@
+const { hasSubscribers } = require('diagnostics_channel')
 const express = require('express')
 const path = require('path')
 const { v4: uuidv4 } = require('uuid')
+const hbs = require('hbs')
 const { db } = require('./DB')
 
 const PORT = 3000
@@ -9,6 +11,7 @@ const app = express()
 
 app.set('view engine', 'hbs')
 app.set('views', path.join(process.env.PWD, 'src', 'views'))
+hbs.registerPartials(path.join(process.env.PWD, 'src', 'views', 'partials'))
 
 // this setting allows express to receive form data
 app.use(express.urlencoded({ extended: true }))

@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            Society
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-badge"></i>
+                        {{#if name}}
+                        {{name}}
+                        {{else}}
+                        Guest
+                        {{/if}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {{#if name}}
+                        <li>
+                            <a class="dropdown-item" href="/auth/logout">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                Log out
+                            </a>
+                        </li>
+                        {{else}}
+                        <li>
+                            <a class="dropdown-item login-ref" href="/auth/login">
+                                <i class="bi bi-box-arrow-in-left"></i>
+                                Log in
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item signup-ref" href="/auth/signup">
+                                Sign up
+                            </a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
