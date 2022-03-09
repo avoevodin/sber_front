@@ -7,19 +7,30 @@ const { checkAuth } = require('./src/middlewares/checkAuth')
 
 const server = express()
 const PORT = process.env.PORT || 3000
+const secretKey = 'asdfkas;gakjg;wreajg;'
 
 server.set('view engine', 'hbs')
 server.set('views', path.join(process.env.PWD, 'src', 'views'))
+server.set('cookieName', 'sid')
 hbs.registerPartials(path.join(process.env.PWD, 'src', 'views', 'partials'))
 
 server.use(express.urlencoded({ extended: true }))
-server.use(sessions())
+server.use(sessions({
+  name: server.get('cookieName'),
+  secret: secretKey, // this secret key will encrypt user's session id
+  resave: false, // don't save unchanged session if false
+  saveUninitialized: false, // save empty session if false
+  cookie: { // settings for cookies
+    // secure: false, // only https if true
+    httpOnly: true, // deny to change cookie from client's js if true
+    maxAge: 86400 * 1e3, // expiration time
+  },
+}))
 server.use((req, res, next) => {
-  const sidFromUser = req.cookies.sid
-  const currentSession = sessions[sidFromUser]
+  const currentEmail = req.session?.user?.email
 
-  if (currentSession) {
-    const currentUser = db.users.find((user) => user.email === currentSession.email)
+  if (currentEmail) {
+    const currentUser = db.users.find((user) => user.email === currentEmail)
     res.locals.name = currentUser.name
   }
 
@@ -42,15 +53,9 @@ server.post('/auth/signup', (req, res) => {
     password,
   })
 
-  const sid = Date.now()
-  sessions[sid] = {
+  req.session.user = {
     email,
   }
-
-  res.cookie('sid', sid, {
-    httpOnly: true, // data won't be allowed from client js
-    maxAge: 36e5,
-  })
 
   res.redirect('/')
 })
@@ -64,28 +69,20 @@ server.post('/auth/signin', (req, res) => {
   const currentUser = db.users.find((user) => user.email === email)
 
   if (currentUser && currentUser.password === password) {
-    const sid = Date.now()
-
-    sessions[sid] = {
+    req.session.user = {
       email,
     }
-
-    res.cookie('sid', sid, {
-      httpOnly: true, // data won't be allowed from client js
-      maxAge: 36e5,
-    })
   }
 
   res.redirect('/')
 })
 
 server.get('/auth/signout', (req, res) => {
-  const sidFromUserCookie = req.cookies.sid
-
-  delete sessions[sidFromUserCookie]
-
-  res.clearCookie('sid')
-  res.redirect('/')
+  req.session.destroy((err) => {
+    if (err) return res.redirect('/')
+    res.clearCookie(server.get('cookieName'))
+    return res.redirect('/')
+  })
 })
 
 server.get('/secret', checkAuth, (req, res) => {
