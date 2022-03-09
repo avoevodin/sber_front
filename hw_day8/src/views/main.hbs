@@ -1,0 +1,46 @@
+<section class="container d-flex justify-content-center my-2">
+    <form class="d-flex flex-column col-4" action="/addpost" method="POST">
+        <div class="mb-2">
+            <input name="username" type="text" class="form-control" placeholder="username">
+        </div>
+        <div class="mb-2">
+            <textarea name="message" class="form-control" rows="3" placeholder="input your message"></textarea>
+        </div>
+        <div class="mb-2">
+            <input name="image" type="text" class="form-control" placeholder="input image link">
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary col-6">Post</button>
+        </div>
+    </form>
+</section>
+
+<hr>
+
+<section data-posts class="container d-flex flex-column align-items-center">
+
+    {{#each listOfPosts}}
+
+        <div data-post_id="{{this.id}}" class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{this.image}}" class="img-fluid rounded-start" alt="Image not found">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title username-title">{{this.username}}:</h5>
+                        <p class="card-text">{{this.message}}</p>
+                        <p class="card-text"><small class="text-muted">Posted at <span>{{this.date}}</span></small></p>
+                        <div class="container d-flex justify-content-end">
+                            <i data-like="like" class="bi bi-hand-thumbs-up-fill me-1 like-thumb"></i>
+                            <i data-like="dislike" class="bi bi-hand-thumbs-down-fill me-1 like-thumb"></i>
+                            <p data-post_rating class="text-muted">{{this.rating}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {{/each}}
+
+</section>
