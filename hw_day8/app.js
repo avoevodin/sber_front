@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
   if (usersQuery.limit !== undefined && Number.isNaN(+usersQuery.limit) === false) {
     postsForRender = postsForRender.slice(0, usersQuery.limit)
   }
-  res.render('main', { listOfPosts: postsForRender })
+  res.render('main_public', { listOfPosts: postsForRender })
 })
 
 app.post('/addpost', (req, res) => {
