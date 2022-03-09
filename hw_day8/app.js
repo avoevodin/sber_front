@@ -1,11 +1,10 @@
-const { hasSubscribers } = require('diagnostics_channel')
 const express = require('express')
 const path = require('path')
 const { v4: uuidv4 } = require('uuid')
 const hbs = require('hbs')
 const { db } = require('./DB')
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 const app = express()
 
@@ -20,15 +19,28 @@ app.use(express.static(path.join(process.env.PWD, 'public')))
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  const usersQuery = req.query
-  let postsForRender = db.posts
-  if (usersQuery.reverse === 'true') {
-    postsForRender = postsForRender.slice().reverse()
+  if (res.locals.name) {
+    const usersQuery = req.query
+    let postsForRender = db.posts
+    if (usersQuery.reverse === 'true') {
+      postsForRender = postsForRender.slice().reverse()
+    }
+
+    if (usersQuery.limit !== undefined && Number.isNaN(+usersQuery.limit) === false) {
+      postsForRender = postsForRender.slice(0, usersQuery.limit)
+    }
+    res.render('main', { listOfPosts: postsForRender })
+  } else {
+    res.render('mainPublic')
   }
-  if (usersQuery.limit !== undefined && Number.isNaN(+usersQuery.limit) === false) {
-    postsForRender = postsForRender.slice(0, usersQuery.limit)
-  }
-  res.render('main_public', { listOfPosts: postsForRender })
+})
+
+app.get('/auth/signup', (req, res) => {
+  res.render('signUp')
+})
+
+app.post('/auth/signup', (req, res) => {
+  res.redirect('/')
 })
 
 app.post('/addpost', (req, res) => {
