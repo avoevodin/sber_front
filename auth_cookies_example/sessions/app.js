@@ -17,6 +17,7 @@ server.set('cookieName', 'sid')
 hbs.registerPartials(path.join(process.env.PWD, 'src', 'views', 'partials'))
 
 server.use(express.urlencoded({ extended: true }))
+server.use(express.static('public'))
 server.use(sessions({
   name: server.get('cookieName'),
   secret: secretKey, // this secret key will encrypt user's session id
