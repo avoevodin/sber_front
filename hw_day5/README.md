@@ -6,7 +6,7 @@
 * Clone the rep:
 ```shell
 git clone git@github.com:avoevodin/sber_front.git
-cd sber_front
+cd sber_front/hw_day5
 ```
 
 * Install the node.js module, if it hasn't been done before.
