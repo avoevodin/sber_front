@@ -25,13 +25,18 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title username-title">{{this.username}}:</h5>
+                    <h5 class="card-title username-title">{{this.authorName}}:</h5>
                     <p class="card-text">{{this.message}}</p>
                     <p class="card-text"><small class="text-muted">Posted at <span>{{this.date}}</span></small></p>
-                    <div class="container d-flex justify-content-end">
-                        <i data-like="like" class="bi bi-hand-thumbs-up-fill me-1 like-thumb"></i>
-                        <i data-like="dislike" class="bi bi-hand-thumbs-down-fill me-1 like-thumb"></i>
-                        <p data-post_rating class="text-muted">{{this.rating}}</p>
+                    <div class="d-flex">
+                        <div>
+                            <i data-remove_post class="bi bi-trash-fill trash-icon"></i>
+                        </div>
+                        <div class="container d-flex justify-content-end">
+                            <i data-like="like" class="bi bi-hand-thumbs-up-fill me-1 like-thumb"></i>
+                            <i data-like="dislike" class="bi bi-hand-thumbs-down-fill me-1 like-thumb"></i>
+                            <p data-post_rating class="text-muted">{{this.rating}}</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,10 @@
     cursor: pointer;
 }
 
+.trash-icon {
+    color: red;
+    cursor: pointer;
+}
 .username-title {
     color:royalblue
 }

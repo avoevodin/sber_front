@@ -71,7 +71,9 @@ app.post('/auth/signup', async (req, res) => {
     email, name, avatar, password,
   } = req.body
   const hashPass = await bcrypt.hash(password, saltRounds)
+  const id = uuidv4()
   db.users.push({
+    id,
     email,
     name,
     avatar,
@@ -79,6 +81,8 @@ app.post('/auth/signup', async (req, res) => {
   })
 
   req.session.user = {
+    id,
+    name,
     email,
   }
 
@@ -97,6 +101,8 @@ app.post('/auth/login', async (req, res) => {
 
   if (currentUser && await bcrypt.compare(password, currentUser.password)) {
     req.session.user = {
+      id: currentUser.id,
+      name: currentUser.name,
       email,
     }
   }
@@ -111,11 +117,16 @@ app.get('/auth/logout', (req, res) => {
   })
 })
 
-app.post('/addpost', (req, res) => {
+app.post('/addpost', checkAuth, (req, res) => {
   const formData = req.body
-  const currentDate = new Date()
-
-  formData.date = `${currentDate.toDateString()} ${currentDate.toLocaleTimeString()}`
+  const options = {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }
+  formData.authorName = req.session?.user?.name
+  formData.authorId = req.session?.user?.id
+  formData.date = new Date().toLocaleDateString('ru-RU', options)
   formData.id = uuidv4()
   formData.rating = 0
   db.posts.push(formData)
@@ -123,7 +134,7 @@ app.post('/addpost', (req, res) => {
   res.redirect('/')
 })
 
-app.patch('/like/:id', (req, res) => {
+app.patch('/like/:id', checkAuth, (req, res) => {
   const { id } = req.params
   const { like } = req.body
   const currentPost = db.posts.find((el) => el.id === id)
@@ -139,7 +150,20 @@ app.patch('/like/:id', (req, res) => {
   })
 })
 
-app.get('*', (req, res) => {
+app.patch('/remove_post/:id', checkAuth, (req, res) => {
+  const { id } = req.params
+  const currentPost = db.posts.find((el) => el.id === id)
+  const currentUserId = req.session?.user?.id
+  let status = 200
+  if (currentUserId === currentPost.authorId) {
+    db.posts = db.posts.filter((e) => e.id !== id)
+  } else {
+    status = 403
+  }
+  res.status(status).json({ status })
+})
+
+app.get('*', checkAuth, (req, res) => {
   res.render('404')
 })
 
