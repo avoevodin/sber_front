@@ -4,6 +4,8 @@ const { v4: uuidv4 } = require('uuid')
 const hbs = require('hbs')
 const bcrypt = require('bcrypt')
 const sessions = require('express-session')
+const WebSocket = require('ws')
+const http = require('http')
 const { db } = require('./DB')
 const { checkAuth } = require('./src/middlewares/checkAuth')
 
@@ -167,6 +169,24 @@ app.get('*', checkAuth, (req, res) => {
   res.render('404')
 })
 
-app.listen(PORT, () => {
+const server = http.createServer(app)
+const wss = new WebSocket.Server({ clientTracking: false, noServer: true })
+
+server.on('upgrade', (req, socket, head) => {
+  wss.handleUpgrade(req, socket, head, (ws) => {
+    wss.emit('connection', ws, request)
+  })
+})
+
+server.on('connection', (ws, req) => {
+  ws.on('message', (message) => {
+    const parsedMessage = JSON.parse(message)
+  })
+
+  ws.on('close', () => {
+
+  })
+})
+server.listen(PORT, () => {
   console.log(`The server has been started on port: ${PORT}`)
 })

@@ -1,24 +1,21 @@
-import TodoList from "../ TodoList/TodoList"
+import TodoList from "../ TodoList/TodoList";
 
-const Main = () => {
-
+const Main = ({ todos, deleteTodo, completeTodo }) => {
     return (
         <div>
-            <TodoList />
+            <TodoList
+                deleteTodo={deleteTodo}
+                completeTodo={completeTodo}
+                todos={todos}
+            />
         </div>
-    )
-}
+    );
+};
 
 const AnotherInMain = () => {
-    return (
-        <div>
-            Another info
-        </div>
-    )
-}
+    return <div>Another info</div>;
+};
 
-export default Main
+export default Main;
 
-export {
-    AnotherInMain
-}
+export { AnotherInMain };

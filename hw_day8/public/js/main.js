@@ -1,5 +1,4 @@
 const $posts = document.querySelector('[data-posts]')
-const $signUpForm = document.forms.signUpForm
 
 $posts.addEventListener('click', async (e) => {
   if (e.target.dataset.like) {
