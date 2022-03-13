@@ -11,7 +11,7 @@ const TodoListProvider = ({ children }) => {
             text,
             completed: false,
         };
-        setTodos(prev => [...prev, newTodo])
+        setTodos((prev) => [...prev, newTodo])
     };
 
     const completeTodo = (id) => {
@@ -19,7 +19,7 @@ const TodoListProvider = ({ children }) => {
             if (todo.id === id) {
                 return {
                     ...todo,
-                    completed: !todo.completed
+                    completed: !todo.completed,
                 }
             }
             return todo
@@ -34,7 +34,7 @@ const TodoListProvider = ({ children }) => {
         setTodos([])
     }
     return (
-        <TodoListContext.Provider value={{ todos, createTodo }}>
+        <TodoListContext.Provider value={{ todos, createTodo, deleteTodo, completeTodo }}>
             {children}
         </TodoListContext.Provider>
     );

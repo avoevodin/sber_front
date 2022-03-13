@@ -9,9 +9,7 @@ const Form = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-
         const inputTrim = input.trim();
-
         if (inputTrim) {
             createTodo(inputTrim)
             setInput('')
@@ -19,7 +17,7 @@ const Form = () => {
     };
 
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className="mb-3">
                 <input
                     type="text"
@@ -31,7 +29,6 @@ const Form = () => {
             <button
                 type="submit"
                 className="btn btn-primary"
-                onSubmit={submitHandler}
             >
                 Add
             </button>
