@@ -14,6 +14,25 @@ const TodoListProvider = ({ children }) => {
         setTodos(prev => [...prev, newTodo])
     };
 
+    const completeTodo = (id) => {
+        setTodos(prev => prev.map(todo => {
+            if (todo.id === id) {
+                return {
+                    ...todo,
+                    completed: !todo.completed
+                }
+            }
+            return todo
+        }))
+    }
+
+    const deleteTodo = (id) => {
+        setTodos(prev => prev.filter((todo) => todo.id !== id))
+    }
+
+    const clearTodos = (id) => {
+        setTodos([])
+    }
     return (
         <TodoListContext.Provider value={{ todos, createTodo }}>
             {children}
