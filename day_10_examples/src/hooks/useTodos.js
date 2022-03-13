@@ -38,6 +38,11 @@ const useTodos = () => {
         const dataFromLS = JSON.parse(localStorage.getItem(LSTodosKey))
         if (dataFromLS) {
             setTodos(dataFromLS)
+        } else {
+            fetch("https://jsonplaceholder.typicode.com/todos/?_limit=5")
+                .then(res => res.json())
+                .then(data => data.map(({ title, userId, ...rest }) => ({ ...rest, text: title })))
+                .then(setTodos)
         }
     }, [])
 
