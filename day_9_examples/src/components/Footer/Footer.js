@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Footer = ({ clearTodos, returnToPrevState }) => {
 
     return (
@@ -22,4 +24,4 @@ const Footer = ({ clearTodos, returnToPrevState }) => {
     )
 }
 
-export default Footer
+export default React.memo(Footer)
