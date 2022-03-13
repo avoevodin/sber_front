@@ -1,6 +1,8 @@
+import TodoList from "./TodoList/TodoList"
+
 const Main = () => {
 
-    return null
+    return <TodoList />
 }
 
 export default Main

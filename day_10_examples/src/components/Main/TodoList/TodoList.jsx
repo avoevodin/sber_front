@@ -6,7 +6,7 @@ const TodoList = () => {
     const { todos } = useContext(TodoListContext)
 
     return (
-        <ul class="list-group">
+        <ul className="list-group">
             {todos.map((todo, i) => {
                 <TodoItem id={todo.id} index={i} text={todo.text} completed={todo.completed} />
             })}
