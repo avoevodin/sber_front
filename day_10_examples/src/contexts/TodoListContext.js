@@ -1,9 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const TodoListContext = createContext();
 
 const TodoListProvider = ({ children }) => {
     const [todos, setTodos] = useState([]);
+    const LSTodosKey = 'todos'
 
     const createTodo = (text) => {
         const newTodo = {
@@ -33,6 +34,14 @@ const TodoListProvider = ({ children }) => {
     const clearTodos = (id) => {
         setTodos([])
     }
+
+    useEffect(() => {
+        const dataFromLS = localStorage.getItem(LSTodosKey)
+        if (dataFromLS) {
+            setTodos(JSON.parse(dataFromLS))
+        }
+    }, [])
+
     return (
         <TodoListContext.Provider value={{ todos, createTodo, deleteTodo, completeTodo }}>
             {children}
