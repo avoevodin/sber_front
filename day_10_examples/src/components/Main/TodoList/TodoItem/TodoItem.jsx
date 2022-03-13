@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { TodoListContext } from "../../../../contexts/TodoListContext"
 
-const TodoItem = (id, text, index, completed) => {
+const TodoItem = ({ id, text, index, completed }) => {
     const { completeTodo, deleteTodo } = useContext(TodoListContext)
     const deleteHandler = () => deleteTodo(id)
     const completeHandler = () => completeTodo(completed)
