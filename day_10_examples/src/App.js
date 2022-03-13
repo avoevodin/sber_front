@@ -8,6 +8,7 @@ function App() {
     <TodoListProvider>
       <div className="container py-5">
         <Header />
+        <hr />
         <Main />
       </div>
     </TodoListProvider >

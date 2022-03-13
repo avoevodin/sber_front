@@ -33,7 +33,7 @@ const Form = () => {
                 className="btn btn-primary"
                 onSubmit={submitHandler}
             >
-                Submit
+                Add
             </button>
         </form>
     );
