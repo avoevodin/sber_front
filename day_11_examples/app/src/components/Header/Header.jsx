@@ -17,6 +17,9 @@ function Header() {
             <li className="nav-item">
               <NavLink className="nav-link" to="info">Info</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="phones">Phones</NavLink>
+            </li>
           </ul>
         </div>
       </div>

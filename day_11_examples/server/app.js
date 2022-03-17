@@ -1,9 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 const { db } = require('./DB')
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 
 app.get('/api/v1/phones', (req, res) => {

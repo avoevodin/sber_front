@@ -1,24 +1,29 @@
-import { createContext, useEffect, useState } from 'react'
+import {
+  createContext, useEffect, useMemo, useState,
+} from 'react'
+import PhonesList from './PhonesList/PhonesList'
 
-const PhoneContext = createContext()
+const PhonesContext = createContext()
 
-function Phones({ children }) {
+function Phones() {
   const [phones, setPhones] = useState([])
 
   useEffect(() => {
-    fetch('localhost:3001/api/v1/phones/')
+    fetch('http://localhost:3000/api/v1/phones/')
       .then((response) => response.json())
       .then((dataFromServer) => setPhones(dataFromServer))
   }, [])
 
+  const shareState = useMemo(() => ({ phones }), [phones])
+
   return (
-    <PhoneContext.PhoneContextProvider value={{ phones }}>
-      {children}
-    </PhoneContext.PhoneContextProvider>
+    <PhonesContext.Provider value={shareState}>
+      <PhonesList />
+    </PhonesContext.Provider>
   )
 }
 
 export default Phones
 export {
-  PhoneContext,
+  PhonesContext,
 }
