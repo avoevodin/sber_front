@@ -14,6 +14,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  plugins: [
+    'react',
+  ],
   rules: {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
@@ -23,8 +26,4 @@ module.exports = {
     'no-console': 0,
     'import/no-cycle': 0,
   },
-  plugins: [
-    'react',
-  ],
-
 }
