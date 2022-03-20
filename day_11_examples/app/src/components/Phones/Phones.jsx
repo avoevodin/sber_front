@@ -1,6 +1,7 @@
 import {
   createContext, useEffect, useMemo, useState,
 } from 'react'
+// import { Outlet } from 'react-router-dom'
 import PhonesList from './PhonesList/PhonesList'
 
 const PhonesContext = createContext()

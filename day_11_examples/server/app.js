@@ -17,10 +17,13 @@ app.get('/api/v1/phones/:id', (req, res) => {
     const { id } = req.params
     const dataForClient = db.phones.find((phone) => phone.id === +id)
 
-    if (dataForClient) {
-        return res.json(dataForClient)
+    if (!dataForClient) { 
+        return res.sendStatus(404)
     }
-    return res.sendStatus(404)
+    
+    setTimeout(() => {
+        res.json(dataForClient)
+    }, 3e3)
 })
 
 app.post('/api/v1/phones/', (req, res) => {
@@ -28,7 +31,7 @@ app.post('/api/v1/phones/', (req, res) => {
 
     const newPhone = {
         ...dataFromClient,
-        id: Date.now().toString(),
+        id: Date.now(),
     }
 
     if (dataFromClient) {

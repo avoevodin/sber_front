@@ -9,6 +9,8 @@ import About from './components/About/About'
 import Header from './components/Header/Header'
 import Info from './components/Info/Info'
 import Phones from './components/Phones/Phones'
+import PageNotFound from './components/404/404'
+import PhonesDetail from './components/Phones/PhonesDetail/PhonesDetail'
 
 function App() {
   return (
@@ -18,8 +20,11 @@ function App() {
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/info" element={<Info />} />
-          <Route path="/phones" element={<Phones />} />
+          <Route path="/phones" element={<Phones />}>
+            <Route path=":phoneId" element={<PhonesDetail />} />
+          </Route>
           <Route path="/" element={<Main />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
