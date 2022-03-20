@@ -1,5 +1,5 @@
 import {
-  createContext, useEffect, useMemo, useState,
+  createContext, useEffect, useState,
 } from 'react'
 import PhoneForm from './PhoneForm/PhoneForm'
 import PhonesList from './PhonesList/PhonesList'
@@ -15,11 +15,15 @@ function Phones() {
       .then((dataFromServer) => setPhones(dataFromServer))
   }, [])
 
-  const shareState = useMemo(() => ({ phones }), [phones])
+  const addPhone = (newPhone) => {
+    setPhones((prev) => [...prev, newPhone])
+  }
 
   return (
-    <PhonesContext.Provider value={shareState}>
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <PhonesContext.Provider value={{ phones, addPhone }}>
       <PhoneForm />
+      <hr className="mb-4" />
       <PhonesList />
     </PhonesContext.Provider>
   )

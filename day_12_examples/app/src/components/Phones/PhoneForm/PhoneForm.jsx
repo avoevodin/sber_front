@@ -1,10 +1,23 @@
 function PhoneForm() {
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
+
+    const formData = Object.fromEntries(new FormData(e.target).entries())
+    const res = await fetch('localhost:3000/api/v1/phones/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+
+    if (res.status === 201) {
+      const phoneFromServer = await res.json()
+    }
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form className="d-flex flex-column align-items-center mb-3 " onSubmit={submitHandler}>
       <div className="mb-3">
         <input name="name" placeholder="name" type="text" className="form-control" />
       </div>
