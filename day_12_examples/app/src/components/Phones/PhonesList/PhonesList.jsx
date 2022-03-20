@@ -5,11 +5,13 @@ import PhonesItem from '../PhonesItem/PhonesItem'
 function PhonesList() {
   const { phones } = useContext(PhonesContext)
   return (
-    <ul>
-      {phones.map((phone) => (
-        <PhonesItem key={phone.id} {...phone} />
-      ))}
-    </ul>
+    <div className="d-flex justify-content-center">
+      <div className="list-group">
+        {phones.map((phone) => (
+          <PhonesItem key={phone.id} {...phone} />
+        ))}
+      </div>
+    </div>
   )
 }
 

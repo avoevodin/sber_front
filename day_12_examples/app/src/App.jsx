@@ -20,9 +20,8 @@ function App() {
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/info" element={<Info />} />
-          <Route path="/phones" element={<Phones />}>
-            <Route path=":phoneId" element={<PhonesDetail />} />
-          </Route>
+          <Route path="/phones" element={<Phones />} />
+          <Route path="/phones/:phoneId" element={<PhonesDetail />} />
           <Route path="/" element={<Main />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

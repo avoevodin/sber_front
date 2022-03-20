@@ -24,29 +24,19 @@ function PhonesDetail() {
     }
 
     return (
-      <>
-        <div>
-          Name:
-          {' '}
-          {phone.name}
+      <div className="card" style={{ width: '18rem' }}>
+        <img src={phone.pic} className="card-img-top" alt="..." />
+        <div className="card-body">
+          <h5 className="card-title">{phone.name}</h5>
+          <p className="card-text">{phone.phone}</p>
+          <button type="button" onClick={() => navigate(-1)} className="btn btn-primary mx-1">Go back</button>
         </div>
-        <div>
-          Phone:
-          {' '}
-          {phone.phone}
-        </div>
-        <div>
-          Email:
-          {' '}
-          {phone.email}
-        </div>
-        <button type="button" onClick={() => { navigate(-1) }} className="btn btn-danger">Back</button>
-      </>
+      </div>
     )
   }
 
   return (
-    <div>
+    <div className="d-flex justify-content-center">
       {content()}
     </div>
   )
