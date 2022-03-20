@@ -46,7 +46,11 @@ const deletePhone = (req, res) => {
 
 const updatePhone = (req, res) => {
     const { id } = req.params
-    const currentPhoneIndex = db.phones.findIndex((phone) => phone.id = +id)
+    const currentPhoneIndex = db.phones.findIndex((phone) => phone.id === +id)
+    console.log(db.phones)
+    console.log(id)
+    console.log(currentPhoneIndex)
+    console.log(req.body)
     if (currentPhoneIndex === -1) return res.sendStatus(404)
 
     if (!Object.values(req.body).every((value)=> !!value)) return res.sendStatus(400)

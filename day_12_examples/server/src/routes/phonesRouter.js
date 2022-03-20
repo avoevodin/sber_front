@@ -3,15 +3,14 @@ const { db } = require('../../DB')
 const { getPhones, getCurrentPhone, createPhone, updatePhone, deletePhone } = require('../controllers/phonesController')
 const phonesRouter = express.Router()
 
-phonesRouter.get('/', getPhones)
+phonesRouter.route('/')
+    .get(getPhones)
+    .post(createPhone)
 
-phonesRouter.get('/:id', getCurrentPhone)
-
-phonesRouter.post('/', createPhone)
-
-phonesRouter.patch('/:id', updatePhone)
-
-phonesRouter.delete('/:id', deletePhone)
+phonesRouter.route('/:id')
+    .get(getCurrentPhone)
+    .patch(updatePhone)
+    .delete(deletePhone)
 
 module.exports = {
     phonesRouter,
