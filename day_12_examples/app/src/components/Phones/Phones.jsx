@@ -1,7 +1,7 @@
 import {
   createContext, useContext, useEffect, useState,
 } from 'react'
-import PhoneForm from './PhoneForm/PhoneForm'
+import CreatePhoneForm from './CreatePhoneForm/CreatePhoneForm'
 import PhonesList from './PhonesList/PhonesList'
 
 const PhonesContext = createContext()
@@ -22,7 +22,7 @@ function Phones() {
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <PhonesContext.Provider value={{ phones, addPhone }}>
-      <PhoneForm />
+      <CreatePhoneForm />
       <hr className="mb-4" />
       <PhonesList />
     </PhonesContext.Provider>
