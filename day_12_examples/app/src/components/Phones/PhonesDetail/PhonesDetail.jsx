@@ -39,7 +39,20 @@ function PhonesDetail() {
             <button type="button" onClick={editHadler} className="btn btn-success mx-1">Edit</button>
           </div>
         </div>
-        <Modal />
+        <Modal>
+          <form className="d-flex flex-column align-items-center">
+            <div className="mb-3">
+              <input name="name" placeholder="name" type="text" className="form-control" />
+            </div>
+            <div className="mb-3">
+              <input name="phone" placeholder="phone" type="text" className="form-control" />
+            </div>
+            <div className="mb-3">
+              <input name="pic" placeholder="image link" type="text" className="form-control" />
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </form>
+        </Modal>
       </>
     )
   }

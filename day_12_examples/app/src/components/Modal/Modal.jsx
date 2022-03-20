@@ -1,7 +1,13 @@
-function Modal() {
+import styles from './modal.module.css'
+
+function Modal({ children }) {
   return (
-    <div>
-      Modal
+    <div className={styles.global_wrapper}>
+      <div className={styles.wrapper}>
+        <div className={styles.inner}>
+          {children}
+        </div>
+      </div>
     </div>
   )
 }

@@ -25,7 +25,7 @@ function PhoneForm() {
   }
 
   return (
-    <form className="d-flex flex-column align-items-center mb-3 " onSubmit={submitHandler}>
+    <form className="d-flex flex-column align-items-center" onSubmit={submitHandler}>
       <div className="mb-3">
         <input name="name" placeholder="name" type="text" className="form-control" />
       </div>
