@@ -21,6 +21,8 @@ const getCurrentPhone = (req, res) => {
 const createPhone = (req, res) => {
     const dataFromClient = req.body
 
+    if (!Object.values(req.body).every((value)=> !!value)) return res.sendStatus(400)
+
     const newPhone = {
         ...dataFromClient,
         id: Date.now(),
@@ -30,13 +32,13 @@ const createPhone = (req, res) => {
         db.phones.push(newPhone)
     }
 
-    return res.json(newPhone)
+    return res.status(201).json(newPhone)
 }
 
 const deletePhone = (req, res) => {
     const { id } = req.params
     const index = db.phones.findIndex((phone) => phone.id === +id)
-
+    
     if (index > -1) {
         db.phones.splice(index, 1)
         return res.sendStatus(200)

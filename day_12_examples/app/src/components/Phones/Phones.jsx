@@ -1,5 +1,5 @@
 import {
-  createContext, useEffect, useState,
+  createContext, useContext, useEffect, useState,
 } from 'react'
 import PhoneForm from './PhoneForm/PhoneForm'
 import PhonesList from './PhonesList/PhonesList'
@@ -29,7 +29,9 @@ function Phones() {
   )
 }
 
+const usePhonesContext = () => useContext(PhonesContext)
 export default Phones
 export {
   PhonesContext,
+  usePhonesContext,
 }

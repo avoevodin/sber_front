@@ -1,9 +1,12 @@
+import { usePhonesContext } from '../Phones'
+
 function PhoneForm() {
+  const { addPhone } = usePhonesContext()
+
   const submitHandler = async (e) => {
     e.preventDefault()
-
     const formData = Object.fromEntries(new FormData(e.target).entries())
-    const res = await fetch('localhost:3000/api/v1/phones/', {
+    const res = await fetch('http://localhost:3000/api/v1/phones/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -13,6 +16,11 @@ function PhoneForm() {
 
     if (res.status === 201) {
       const phoneFromServer = await res.json()
+      addPhone(phoneFromServer)
+      e.target.reset()
+    } else {
+      // eslint-disable-next-line no-alert
+      alert('Wrong data')
     }
   }
 
