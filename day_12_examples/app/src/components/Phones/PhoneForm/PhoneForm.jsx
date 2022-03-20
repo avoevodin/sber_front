@@ -1,6 +1,16 @@
-function PhoneForm({ onSubmit }) {
+import { useEffect, useRef } from 'react'
+
+function PhoneForm({
+  onSubmit, name = '', phone = '', pic = '',
+}) {
+  const formRef = useRef(null)
+  useEffect(() => {
+    formRef.current.elements.name.value = name
+    formRef.current.elements.phone.value = phone
+    formRef.current.elements.pic.value = pic
+  }, [])
   return (
-    <form className="d-flex flex-column align-items-center" onSubmit={onSubmit}>
+    <form ref={formRef} className="d-flex flex-column align-items-center" onSubmit={onSubmit}>
       <div className="mb-3">
         <input name="name" placeholder="name" type="text" className="form-control" />
       </div>

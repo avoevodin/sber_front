@@ -15,7 +15,7 @@ const getCurrentPhone = (req, res) => {
     
     setTimeout(() => {
         res.json(dataForClient)
-    }, 3e3)
+    }, 1e3)
 }
 
 const createPhone = (req, res) => {
