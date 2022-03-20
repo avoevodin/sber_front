@@ -1,50 +1,17 @@
 const express = require('express')
 const { db } = require('../../DB')
+const { getPhones, getCurrentPhone, createPhone, updatePhone, deletePhone } = require('../controllers/phonesController')
 const phonesRouter = express.Router()
 
-phonesRouter.get('/', (req, res) => {
-    const dataForClient = db.phones.map(({ email, ...rest }) => rest)
-    res.json(dataForClient)
-})
+phonesRouter.get('/', getPhones)
 
-phonesRouter.get('/:id', (req, res) => {
-    const { id } = req.params
-    const dataForClient = db.phones.find((phone) => phone.id === +id)
+phonesRouter.get('/:id', getCurrentPhone)
 
-    if (!dataForClient) { 
-        return res.sendStatus(404)
-    }
-    
-    setTimeout(() => {
-        res.json(dataForClient)
-    }, 3e3)
-})
+phonesRouter.post('/', createPhone)
 
-phonesRouter.post('/', (req, res) => {
-    const dataFromClient = req.body
+phonesRouter.patch('/:id', updatePhone)
 
-    const newPhone = {
-        ...dataFromClient,
-        id: Date.now(),
-    }
-
-    if (dataFromClient) {
-        db.phones.push(newPhone)
-    }
-
-    return res.json(newPhone)
-})
-
-phonesRouter.delete('/:id', (req, res) => {
-    const { id } = req.params
-    const index = db.phones.findIndex((phone) => phone.id === +id)
-
-    if (index > -1) {
-        db.phones.splice(index, 1)
-        return res.sendStatus(200)
-    }
-    return res.sendStatus(404)
-})
+phonesRouter.delete('/:id', deletePhone)
 
 module.exports = {
     phonesRouter,
