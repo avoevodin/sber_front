@@ -1,6 +1,7 @@
 import {
   createContext, useEffect, useMemo, useState,
 } from 'react'
+import PhoneForm from './PhoneForm/PhoneForm'
 import PhonesList from './PhonesList/PhonesList'
 
 const PhonesContext = createContext()
@@ -18,6 +19,7 @@ function Phones() {
 
   return (
     <PhonesContext.Provider value={shareState}>
+      <PhoneForm />
       <PhonesList />
     </PhonesContext.Provider>
   )
