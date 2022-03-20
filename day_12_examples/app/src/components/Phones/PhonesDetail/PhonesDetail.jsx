@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Modal from '../../Modal/Modal'
+import PhoneForm from '../PhoneForm/PhoneForm'
 
 function PhonesDetail() {
   const { phoneId } = useParams()
@@ -40,18 +41,7 @@ function PhonesDetail() {
           </div>
         </div>
         <Modal>
-          <form className="d-flex flex-column align-items-center">
-            <div className="mb-3">
-              <input name="name" placeholder="name" type="text" className="form-control" />
-            </div>
-            <div className="mb-3">
-              <input name="phone" placeholder="phone" type="text" className="form-control" />
-            </div>
-            <div className="mb-3">
-              <input name="pic" placeholder="image link" type="text" className="form-control" />
-            </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
-          </form>
+          <PhoneForm />
         </Modal>
       </>
     )
