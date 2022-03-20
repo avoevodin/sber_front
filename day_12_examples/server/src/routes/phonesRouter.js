@@ -1,13 +1,13 @@
-const express = require('express ')
-
+const express = require('express')
+const { db } = require('../../DB')
 const phonesRouter = express.Router()
 
-phonesRouter.get('/api/v1/phones', (req, res) => {
+phonesRouter.get('/', (req, res) => {
     const dataForClient = db.phones.map(({ email, ...rest }) => rest)
     res.json(dataForClient)
 })
 
-phonesRouter.get('/api/v1/phones/:id', (req, res) => {
+phonesRouter.get('/:id', (req, res) => {
     const { id } = req.params
     const dataForClient = db.phones.find((phone) => phone.id === +id)
 
@@ -20,7 +20,7 @@ phonesRouter.get('/api/v1/phones/:id', (req, res) => {
     }, 3e3)
 })
 
-phonesRouter.post('/api/v1/phones/', (req, res) => {
+phonesRouter.post('/', (req, res) => {
     const dataFromClient = req.body
 
     const newPhone = {
@@ -35,7 +35,7 @@ phonesRouter.post('/api/v1/phones/', (req, res) => {
     return res.json(newPhone)
 })
 
-phonesRouter.delete('/api/v1/phones/:id', (req, res) => {
+phonesRouter.delete('/:id', (req, res) => {
     const { id } = req.params
     const index = db.phones.findIndex((phone) => phone.id === +id)
 
@@ -45,3 +45,7 @@ phonesRouter.delete('/api/v1/phones/:id', (req, res) => {
     }
     return res.sendStatus(404)
 })
+
+module.exports = {
+    phonesRouter,
+}
