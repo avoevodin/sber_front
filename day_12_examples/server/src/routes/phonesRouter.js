@@ -1,5 +1,4 @@
 const express = require('express')
-const { db } = require('../../DB')
 const { getPhones, getCurrentPhone, createPhone, updatePhone, deletePhone } = require('../controllers/phonesController')
 const phonesRouter = express.Router()
 
