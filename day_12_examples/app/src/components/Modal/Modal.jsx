@@ -5,13 +5,16 @@ import styles from './modal.module.css'
 function Modal({ children, onClose, state = false }) {
   if (!state) return null
 
+  const escHandler = (e) => {
+    if (e.code === 'Escape') {
+      onClose()
+    }
+  }
+
   useEffect(() => {
-    window.document.addEventListener('keydown', (e) => {
-      if (e.code === 'Escape') {
-        onClose()
-      }
-    })
-  })
+    window.document.addEventListener('keydown', escHandler)
+    return () => window.document.removeEventListener('keydown', escHandler)
+  }, [])
 
   return ReactDOM.createPortal(
     (
