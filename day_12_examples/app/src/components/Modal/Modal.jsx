@@ -3,9 +3,12 @@ import ModalInner from './ModalInner'
 
 function Modal({ children, state, ...rest }) {
   return ReactDOM.createPortal(
+    state
+    && (
     <ModalInner {...rest}>
       {children}
-    </ModalInner>,
+    </ModalInner>
+    ),
     document.getElementById('modal-root'),
   )
 }
