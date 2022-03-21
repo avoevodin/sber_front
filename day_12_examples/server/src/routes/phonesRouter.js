@@ -1,5 +1,6 @@
 const express = require('express')
 const { getPhones, getCurrentPhone, createPhone, updatePhone, deletePhone } = require('../controllers/phonesController')
+
 const phonesRouter = express.Router()
 
 phonesRouter.route('/')
