@@ -1,29 +1,11 @@
-import { useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import styles from './modal.module.css'
+import ModalInner from './ModalInner'
 
-function Modal({ children, onClose, state = false }) {
-  if (!state) return null
-
-  const escHandler = (e) => {
-    if (e.code === 'Escape') {
-      onClose()
-    }
-  }
-
-  useEffect(() => {
-    window.document.addEventListener('keydown', escHandler)
-    return () => window.document.removeEventListener('keydown', escHandler)
-  }, [])
-
+function Modal({ children, state, ...rest }) {
   return ReactDOM.createPortal(
-    (
-      <div className={styles.wrapper}>
-        <div className={styles.inner}>
-          {children}
-        </div>
-      </div>
-    ),
+    <ModalInner {...rest}>
+      {children}
+    </ModalInner>,
     document.getElementById('modal-root'),
   )
 }
