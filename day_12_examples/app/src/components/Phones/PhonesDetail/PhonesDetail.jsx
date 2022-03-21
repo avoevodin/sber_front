@@ -31,6 +31,29 @@ function PhonesDetail() {
     setViewModal(false)
   }
 
+  const submitHandler = async (e) => {
+    e.preventDefault()
+    const formData = Object.fromEntries(new FormData(e.target).entries())
+    const res = await fetch(`http://localhost:3000/api/v1/phones/${phoneId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+
+    if (res.status === 200) {
+      const updatedPhoneFromServer = await res.json()
+
+      setPhone(updatedPhoneFromServer)
+      e.target.reset()
+      closeModal()
+    } else {
+      // eslint-disable-next-line no-alert
+      alert('Wrong data')
+    }
+  }
+
   const content = () => {
     if (!phone.id) {
       return <strong>Loading...</strong>
@@ -64,7 +87,7 @@ function PhonesDetail() {
           onClose={closeModal}
         >
           <PhoneForm
-            onSubmit={() => {}}
+            onSubmit={submitHandler}
             name={phone.name}
             phone={phone.phone}
             pic={phone.pic}

@@ -20,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/info" element={<Info />} />
+          {/* TODO how to make inner routes??? */}
           <Route path="/phones" element={<Phones />} />
           <Route path="/phones/:phoneId" element={<PhonesDetail />} />
           <Route path="/" element={<Main />} />

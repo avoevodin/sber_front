@@ -4,11 +4,13 @@ function PhoneForm({
   onSubmit, name = '', phone = '', pic = '',
 }) {
   const formRef = useRef(null)
+
   useEffect(() => {
     formRef.current.elements.name.value = name
     formRef.current.elements.phone.value = phone
     formRef.current.elements.pic.value = pic
   }, [])
+
   return (
     <form ref={formRef} className="d-flex flex-column align-items-center" onSubmit={onSubmit}>
       <div className="mb-3">
