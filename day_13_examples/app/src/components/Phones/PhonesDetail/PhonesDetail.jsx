@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { PhonesContext } from '../Phones'
+import usePhonesDetailModal from './hooks/usePhonesDetailModal'
 import PhonesDetailCard from './PhonesDetailCard/PhonesDetailCard'
 import PhonesDetailModal from './PhonesDetailModal/PhonesDetailModal'
 
@@ -11,7 +12,6 @@ const PhonesDetailContext = () => {
 function PhonesDetail() {
   const { phoneId } = useParams()
   const [phone, setPhone] = useState({})
-  const [viewModal, setViewModal] = useState(false)
 
   const currentController = useRef(new AbortController()).current
 
@@ -26,10 +26,6 @@ function PhonesDetail() {
       currentController.abort()
     }
   }, [])
-
-  const closeModal = () => {
-    setViewModal(false)
-  }
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -53,6 +49,8 @@ function PhonesDetail() {
       alert('Wrong data')
     }
   }
+
+  const { viewModal, openModal, closeModal } = usePhonesDetailModal()
 
   return (
     <PhonesContext.Provider>
