@@ -8,6 +8,12 @@ export const modalWrVariants = {
       when: 'beforeChildren',
     },
   },
+  end: {
+    opacity: 0,
+    transition: {
+      when: 'afterChildren ',
+    },
+  },
 }
 
 export const modalInnerVariants = {
@@ -18,5 +24,9 @@ export const modalInnerVariants = {
   show: {
     y: 0,
     opacity: 1,
+  },
+  end: {
+    opacity: 0,
+    y: 200,
   },
 }
