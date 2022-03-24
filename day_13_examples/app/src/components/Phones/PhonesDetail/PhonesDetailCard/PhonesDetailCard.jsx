@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom'
+import { usePhonesDetailContext } from '../PhonesDetail'
 
 function PhonesDetailCard() {
   const navigate = useNavigate()
+  const { phone, openModal } = usePhonesDetailContext()
 
   return (
     <div className="card" style={{ width: '18rem' }}>

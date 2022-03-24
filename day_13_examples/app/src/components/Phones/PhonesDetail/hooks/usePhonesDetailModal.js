@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const usePhonesDetailModal = () => {
   const [viewModal, setViewModal] = useState(false)
 

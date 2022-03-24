@@ -1,9 +1,11 @@
-import { useState } from 'react'
 import Modal from '../../../Modal/Modal'
+import PhoneForm from '../../PhoneForm/PhoneForm'
+import { usePhonesDetailContext } from '../PhonesDetail'
 
 function PhonesDetailModal() {
-  const [viewModal, setViewModal] = useState(false)
-
+  const {
+    viewModal, closeModal, submitHandler, phone,
+  } = usePhonesDetailContext()
   return (
     <Modal
       state={viewModal}
