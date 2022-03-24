@@ -2,7 +2,7 @@ import Modal from '../../../Modal/Modal'
 import PhoneForm from '../../PhoneForm/PhoneForm'
 import { usePhonesDetailContext } from '../PhonesDetail'
 
-function PhonesDetailModal() {
+const PhonesDetailModal = () => {
   const {
     viewModal, closeModal, submitHandler, phone,
   } = usePhonesDetailContext()

@@ -1,7 +1,5 @@
-function Info() {
-  return (
-    <p>Info</p>
-  )
-}
+const Info = () => (
+  <p>Info</p>
+)
 
 export default Info

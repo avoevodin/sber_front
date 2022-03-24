@@ -12,23 +12,21 @@ import Phones from './components/Phones/Phones'
 import PageNotFound from './components/404/404'
 import PhonesDetail from './components/Phones/PhonesDetail/PhonesDetail'
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Header />
-      <div className="container py-5">
-        <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="/info" element={<Info />} />
-          {/* TODO how to make inner routes??? */}
-          <Route path="/phones" element={<Phones />} />
-          <Route path="/phones/:phoneId" element={<PhonesDetail />} />
-          <Route path="/" element={<Main />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  )
-}
+const App = () => (
+  <BrowserRouter>
+    <Header />
+    <div className="container py-5">
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/info" element={<Info />} />
+        {/* TODO how to make inner routes??? */}
+        <Route path="/phones" element={<Phones />} />
+        <Route path="/phones/:phoneId" element={<PhonesDetail />} />
+        <Route path="/" element={<Main />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </div>
+  </BrowserRouter>
+)
 
 export default App

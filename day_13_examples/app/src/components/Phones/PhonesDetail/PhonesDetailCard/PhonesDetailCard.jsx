@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { usePhonesDetailContext } from '../PhonesDetail'
 
 const PhonesDetailCard = () => {
@@ -6,7 +7,7 @@ const PhonesDetailCard = () => {
   const { phone, openModal } = usePhonesDetailContext()
 
   return (
-    <div className="card" style={{ width: '18rem' }}>
+    <motion.div animate={{ opacity: 1 }} className="card" style={{ width: '18rem' }}>
       <img src={phone.pic} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{phone.name}</h5>
@@ -26,7 +27,7 @@ const PhonesDetailCard = () => {
           Edit
         </button>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

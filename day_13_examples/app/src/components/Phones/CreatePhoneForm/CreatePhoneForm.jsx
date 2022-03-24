@@ -1,7 +1,7 @@
 import PhoneForm from '../PhoneForm/PhoneForm'
 import { usePhonesContext } from '../Phones'
 
-function CreatePhoneForm() {
+const CreatePhoneForm = () => {
   const { addPhone } = usePhonesContext()
 
   const submitHandler = async (e) => {

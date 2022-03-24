@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 
-function PhoneForm({
+const PhoneForm = ({
   onSubmit, name = '', phone = '', pic = '',
-}) {
+}) => {
   const formRef = useRef(null)
 
   useEffect(() => {

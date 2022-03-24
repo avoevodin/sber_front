@@ -16,7 +16,7 @@ function Modal({ children, state, ...rest }) {
   )
 }
 
-function ModalInner({ children, onClose }) {
+const ModalInner = ({ children, onClose }) => {
   const escHandler = (e) => {
     if (e.code === 'Escape') {
       onClose()

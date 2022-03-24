@@ -6,7 +6,7 @@ import PhonesList from './PhonesList/PhonesList'
 
 const PhonesContext = createContext()
 
-function Phones() {
+const Phones = () => {
   const [phones, setPhones] = useState([])
 
   useEffect(() => {

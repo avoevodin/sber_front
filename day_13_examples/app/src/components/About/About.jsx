@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-function About() {
+const About = () => {
   const navigate = useNavigate()
   return (
     <>
