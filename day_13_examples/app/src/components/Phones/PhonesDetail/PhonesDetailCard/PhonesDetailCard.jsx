@@ -7,7 +7,7 @@ const PhonesDetailCard = () => {
   const { phone, openModal } = usePhonesDetailContext()
 
   return (
-    <motion.div animate={{ opacity: 1 }} className="card" style={{ width: '18rem' }}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="card" style={{ width: '18rem' }}>
       <img src={phone.pic} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{phone.name}</h5>
