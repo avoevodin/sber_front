@@ -1,18 +1,21 @@
-import { useEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const usePhonesDetail = (closeModal) => {
   const { phoneId } = useParams()
+  const [loading, setLoading] = useState(false)
   const [phone, setPhone] = useState({})
 
   const currentController = useRef(new AbortController()).current
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setLoading(true)
     fetch(`http://localhost:3000/api/v1/phones/${phoneId}`, {
       signal: currentController.signal,
     })
       .then((response) => response.json())
       .then((dataFromServer) => setPhone(dataFromServer))
+      .finally(() => setLoading(false))
 
     return () => {
       currentController.abort()
@@ -44,6 +47,7 @@ const usePhonesDetail = (closeModal) => {
 
   return {
     phone,
+    loading,
     submitHandler,
   }
 }
