@@ -11,7 +11,7 @@ export const modalWrVariants = {
   end: {
     opacity: 0,
     transition: {
-      when: 'afterChildren ',
+      when: 'afterChildren',
     },
   },
 }
