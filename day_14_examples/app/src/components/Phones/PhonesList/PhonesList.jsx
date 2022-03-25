@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useContext } from 'react'
 import { PhonesContext } from '../Phones'
 import PhonesItem from '../PhonesItem/PhonesItem'
@@ -22,9 +22,11 @@ const PhonesList = () => {
       {
         phones.length ? (
           <motion.div variants={phonesListVariants} initial="start" animate="end" className="list-group">
-            {phones.map((phone) => (
-              <PhonesItem key={phone.id} {...phone} />
-            ))}
+            <AnimatePresence>
+              {phones.map((phone) => (
+                <PhonesItem key={phone.id} {...phone} />
+              ))}
+            </AnimatePresence>
           </motion.div>
         ) : null
       }
