@@ -14,7 +14,7 @@ const SearchPhoneForm = () => {
       const preparedFilterForURL = encodeURIComponent(JSON.stringify(filter))
       fetch(`http://localhost:3000/api/v1/phones/?filter=${preparedFilterForURL}`)
         .then((response) => response.json())
-        .then(console.log)
+        .then((dataFromServer) => )
     } else {
       isMount.current = true
     }
