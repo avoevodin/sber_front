@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { usePhonesContext } from '../Phones'
 
 // const isMount = false
@@ -6,7 +7,16 @@ import { usePhonesContext } from '../Phones'
 const SearchPhoneForm = () => {
   const [searchInput, setSearchInput] = useState('')
   const { updatePhones } = usePhonesContext()
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const isMount = useRef(false)
+
+  useEffect(() => {
+    const parsedQuery = JSON.parse(searchParams.get('filter'))
+    if (parsedQuery && parsedQuery.search) {
+      setSearchInput(parsedQuery.search)
+    }
+  }, [])
 
   useEffect(() => {
     if (isMount.current) {
@@ -14,7 +24,10 @@ const SearchPhoneForm = () => {
         search: searchInput,
       }
       const preparedFilterForURL = encodeURIComponent(JSON.stringify(filter))
-      fetch(`http://localhost:3000/api/v1/phones/?filter=${preparedFilterForURL}`)
+      const query = `?filter=${preparedFilterForURL}`
+      setSearchParams(query)
+
+      fetch(`http://localhost:3000/api/v1/phones/${query}`)
         .then((response) => response.json())
         .then((dataFromServer) => updatePhones(dataFromServer))
     } else {
