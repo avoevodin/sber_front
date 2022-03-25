@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { usePhonesContext } from '../Phones'
 // import { Link } from 'react-router-dom'
 
 const phonesItemVariants = {
@@ -16,6 +17,7 @@ const phonesItemVariants = {
 }
 
 const PhonesItem = ({ name, phone, id }) => {
+  const { deletePhone } = usePhonesContext()
   const navigate = useNavigate()
   let isDrag = false
   const deleteTrashhold = 100
@@ -30,7 +32,7 @@ const PhonesItem = ({ name, phone, id }) => {
 
   const dragEndHandler = (_, info) => {
     if (Math.abs(info.offset.x) > deleteTrashhold) {
-      console.log('delete')
+      deletePhone(id)
     }
     setTimeout(() => {
       isDrag = false

@@ -19,9 +19,20 @@ const Phones = () => {
     setPhones((prev) => [...prev, newPhone])
   }
 
+  const deletePhone = (id) => {
+    fetch(`http://localhost:3000/api/v1/phones/${id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          setPhones((prev) => prev.filter((phone) => phone.id !== id))
+        }
+      })
+  }
+
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <PhonesContext.Provider value={{ phones, addPhone }}>
+    <PhonesContext.Provider value={{ phones, addPhone, deletePhone }}>
       <CreatePhoneForm />
       <hr className="mb-4" />
       <PhonesList />
