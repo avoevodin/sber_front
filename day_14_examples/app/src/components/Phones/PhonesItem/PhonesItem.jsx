@@ -17,17 +17,24 @@ const phonesItemVariants = {
 
 const PhonesItem = ({ name, phone, id }) => {
   const navigate = useNavigate()
+  let isDrag = false
+  const deleteTrashhold = 100
 
-  const mouseUpHandler = () => {
-    navigate(`/phones/${id}`)
+  const clickHandler = () => {
+    if (!isDrag) navigate(`/phones/${id}`)
   }
 
-  const dragEndHandler = (e, info) => {
-    console.log(e, info)
+  const dragStartHandler = () => {
+    isDrag = true
   }
 
-  const dragStartHandler = (e, info) => {
-    console.log(e, info)
+  const dragEndHandler = (_, info) => {
+    if (Math.abs(info.offset.x) > deleteTrashhold) {
+      console.log('delete')
+    }
+    setTimeout(() => {
+      isDrag = false
+    })
   }
 
   return (
@@ -38,7 +45,7 @@ const PhonesItem = ({ name, phone, id }) => {
         top: 0, left: 0, bottom: 0, right: 0,
       }}
       variants={phonesItemVariants}
-      onMouseUp={mouseUpHandler}
+      onClick={clickHandler}
       onDragEnd={dragEndHandler}
       onDragStart={dragStartHandler}
     >
