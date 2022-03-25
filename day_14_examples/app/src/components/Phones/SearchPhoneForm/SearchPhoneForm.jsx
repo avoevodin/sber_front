@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
+import { usePhonesContext } from '../Phones'
 
 // const isMount = false
 
 const SearchPhoneForm = () => {
   const [searchInput, setSearchInput] = useState('')
+  const { updatePhones } = usePhonesContext()
   const isMount = useRef(false)
 
   useEffect(() => {
@@ -14,7 +16,7 @@ const SearchPhoneForm = () => {
       const preparedFilterForURL = encodeURIComponent(JSON.stringify(filter))
       fetch(`http://localhost:3000/api/v1/phones/?filter=${preparedFilterForURL}`)
         .then((response) => response.json())
-        .then((dataFromServer) => )
+        .then((dataFromServer) => updatePhones(dataFromServer))
     } else {
       isMount.current = true
     }

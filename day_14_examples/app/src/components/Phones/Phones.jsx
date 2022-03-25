@@ -31,9 +31,14 @@ const Phones = () => {
       })
   }
 
+  const updatePhones = (newPhonesList) => setPhones(newPhonesList)
+
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <PhonesContext.Provider value={{ phones, addPhone, deletePhone }}>
+    <PhonesContext.Provider value={{
+      phones, addPhone, deletePhone, updatePhones,
+    }}
+    >
       <CreatePhoneForm />
       <hr className="mb-4" />
       <SearchPhoneForm />

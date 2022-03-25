@@ -1,7 +1,14 @@
 const { db } = require("../../DB")
 
 const getPhones = (req, res) => {
-    const dataForClient = db.phones.map(({ email, ...rest }) => rest)
+    const filter = req.query.filter && JSON.parse(req.query.filter)
+    let dataForClient = db.phones
+    if (filter) {
+        const searchRegExp = new RegExp(filter.search, "i")
+        dataForClient = dataForClient.filter((phone) => searchRegExp.test(phone.name))
+    }
+
+    dataForClient = dataForClient.map(({email, ...rest}) => rest)
     res.json(dataForClient)
 }
 
