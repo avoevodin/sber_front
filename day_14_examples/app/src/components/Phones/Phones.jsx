@@ -3,6 +3,7 @@ import {
 } from 'react'
 import CreatePhoneForm from './CreatePhoneForm/CreatePhoneForm'
 import PhonesList from './PhonesList/PhonesList'
+import SearchPhoneForm from './SearchPhoneForm/SearchPhoneForm'
 
 const PhonesContext = createContext()
 
@@ -35,6 +36,7 @@ const Phones = () => {
     <PhonesContext.Provider value={{ phones, addPhone, deletePhone }}>
       <CreatePhoneForm />
       <hr className="mb-4" />
+      <SearchPhoneForm />
       <PhonesList />
     </PhonesContext.Provider>
   )
