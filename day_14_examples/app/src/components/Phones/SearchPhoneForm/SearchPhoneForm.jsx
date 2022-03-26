@@ -29,7 +29,8 @@ const SearchPhoneForm = () => {
 
       fetch(`http://localhost:3000/api/v1/phones/${query}`)
         .then((response) => response.json())
-        .then((dataFromServer) => updatePhones(dataFromServer))
+        // .then((dataFromServer) => updatePhones(dataFromServer))
+        .then(updatePhones)
     } else {
       isMount.current = true
     }
