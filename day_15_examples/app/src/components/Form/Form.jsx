@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createNewTodo } from '../../redux/actionCreators/todosActionCreators'
 
-const Form = ({addNewTodo}) => {
-
-  const [title, setTitle] = useState("")
-
+function Form() {
+  const [title, setTitle] = useState('')
+  const dispatch = useDispatch()
   const changeHandler = (e) => {
     setTitle(e.target.value)
   }
@@ -11,14 +12,12 @@ const Form = ({addNewTodo}) => {
   const submitHandler = (e) => {
     e.preventDefault()
 
-    let newTitle = title.trim()
+    const newTitle = title.trim()
     if (newTitle) {
-      addNewTodo(newTitle)
-      setTitle('') 
+      dispatch(createNewTodo(newTitle))
+      setTitle('')
     }
-    
   }
-
 
   return (
     <form onSubmit={submitHandler} className="d-flex flex-column align-items-center">
@@ -29,7 +28,7 @@ const Form = ({addNewTodo}) => {
           className="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
-					placeholder="Text here..."
+          placeholder="Text here..."
           value={title}
         />
       </div>
@@ -38,7 +37,7 @@ const Form = ({addNewTodo}) => {
         Add Todo
       </button>
     </form>
-  );
-};
+  )
+}
 
 export default Form
