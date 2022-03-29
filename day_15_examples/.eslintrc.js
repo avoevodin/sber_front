@@ -16,4 +16,4 @@ module.exports = {
     'no-return-assign': 0,
     'no-param-reassign': 0,
   },
-};
+}
