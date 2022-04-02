@@ -1,5 +1,5 @@
 import {
-  ADD_NEW_TODO, CLEAR_ALL_TODOS, COMPLETE_TODO, DELETE_TODO, EDIT_TODO,
+  ADD_NEW_TODO, CLEAR_ALL_TODOS, COMPLETE_TODO, DELETE_TODO, EDIT_TODO, UPDATE_ALL_TODOS,
 } from '../actionTypes/todosTypes'
 
 // eslint-disable-next-line default-param-last
@@ -31,6 +31,9 @@ const todosReducer = (store = [], action) => {
         }
         return todo
       })
+    case UPDATE_ALL_TODOS:
+      return action.payload
+
     default:
       return store
   }
