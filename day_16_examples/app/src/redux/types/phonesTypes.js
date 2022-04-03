@@ -1,0 +1,4 @@
+export const SET_PHONES = 'SET_PHONES'
+export const DELETE_PHONE = 'DELETE_PHONE'
+export const UPDATE_PHONE = 'UPDATE_PHONE'
+export const FILTER_PHONES = 'FILTER_PHONES'
