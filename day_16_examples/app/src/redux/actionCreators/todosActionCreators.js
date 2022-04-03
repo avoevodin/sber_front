@@ -38,9 +38,9 @@ export const updateAllTodos = (count = 5) => async (dispatch) => {
     initData = await fetch(`https://jsonplaceholder.typicode.com/todos/?_limit=${count}`)
       .then((res) => res.json())
       .then((dataFromWeb) => (dataFromWeb))
+    dispatch({
+      type: UPDATE_ALL_TODOS,
+      payload: initData,
+    })
   }
-  dispatch({
-    type: UPDATE_ALL_TODOS,
-    payload: initData,
-  })
 }
