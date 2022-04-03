@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { usePhonesContext } from '../Phones'
-// import { Link } from 'react-router-dom'
+import { deletePhoneQuery } from '../../../redux/actionCreators/phonesActionCreators'
 
 const phonesItemVariants = {
   start: {
@@ -17,8 +17,9 @@ const phonesItemVariants = {
 }
 
 const PhonesItem = ({ name, phone, id }) => {
-  const { deletePhone } = usePhonesContext()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  console.log(dispatch)
 
   let isDrag = false
   const deleteTrashhold = 100
@@ -41,7 +42,7 @@ const PhonesItem = ({ name, phone, id }) => {
 
   const dragEndHandler = () => {
     if (Math.abs(followX.get()) > deleteTrashhold) {
-      deletePhone(id)
+      dispatch(deletePhoneQuery(id))
     }
     setTimeout(() => {
       isDrag = false

@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useContext } from 'react'
-import { PhonesContext } from '../Phones'
+import { useSelector } from 'react-redux'
 import PhonesItem from '../PhonesItem/PhonesItem'
 
 const phonesListVariants = {
@@ -16,7 +15,7 @@ const phonesListVariants = {
 }
 
 const PhonesList = () => {
-  const { phones } = useContext(PhonesContext)
+  const phones = useSelector((store) => store.phones)
   return (
     <div className="d-flex justify-content-center">
       {
