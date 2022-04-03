@@ -19,7 +19,6 @@ const phonesItemVariants = {
 const PhonesItem = ({ name, phone, id }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  console.log(dispatch)
 
   let isDrag = false
   const deleteTrashhold = 100
