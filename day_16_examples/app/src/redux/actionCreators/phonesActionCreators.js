@@ -33,7 +33,7 @@ const updatePhone = (newPhone) => ({
   payload: newPhone,
 })
 
-export const updatePhoneQuery = (id, formData) => async (dispatch) => {
+export const updatePhoneQuery = (id, formData, closeModal) => async (dispatch) => {
   const response = await fetch(`http://localhost:3000/api/v1/phones/${id}`, {
     method: 'PATCH',
     headers: {
@@ -45,6 +45,7 @@ export const updatePhoneQuery = (id, formData) => async (dispatch) => {
   if (response.status === 200) {
     const updatedPhoneFromServer = await response.json()
     dispatch(updatePhone(updatedPhoneFromServer))
+    closeModal()
   } else {
     alert('Wrong data')
   }
@@ -72,4 +73,15 @@ export const addPhoneQuery = (formData, e) => async (dispatch) => {
   } else {
     alert('Wrong data')
   }
+}
+
+export const getPhoneQuery = (id, signal, setLoading) => async (dispatch) => {
+  setLoading(true)
+  const response = await fetch(`http://localhost:3000/api/v1/phones/${id}`, {
+    signal,
+  })
+  const phoneFromServer = await response.json()
+
+  dispatch(addPhone(phoneFromServer))
+  setLoading(false)
 }

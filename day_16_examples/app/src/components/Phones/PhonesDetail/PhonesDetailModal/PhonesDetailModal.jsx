@@ -1,5 +1,5 @@
 import Modal from '../../../Modal/Modal'
-import PhoneForm from '../../PhoneForm/PhoneForm'
+import Form from '../../Form/Form'
 import { usePhonesDetailContext } from '../PhonesDetail'
 
 const PhonesDetailModal = () => {
@@ -11,11 +11,9 @@ const PhonesDetailModal = () => {
       state={viewModal}
       onClose={closeModal}
     >
-      <PhoneForm
+      <Form
         onSubmit={submitHandler}
-        name={phone.name}
-        phone={phone.phone}
-        pic={phone.pic}
+        {...phone}
       />
     </Modal>
   )
