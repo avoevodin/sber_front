@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+import { Grid } from '@mui/material'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadAllPosts } from '../../redux/actions/postAC'
@@ -15,9 +16,9 @@ const PostsList = () => {
   if (!posts.length) return (<div>Posts list is empty</div>)
 
   return (
-    <div>
+    <Grid container spacing={2} justifyContent="center">
       {posts.map((post) => <PostItem key={post._id} {...post} />)}
-    </div>
+    </Grid>
   )
 }
 
