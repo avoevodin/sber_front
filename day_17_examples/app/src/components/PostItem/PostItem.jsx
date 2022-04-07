@@ -36,6 +36,7 @@ const PostItem = ({
     setExpanded(!expanded)
   }
 
+  const description = text.length > 200 ? `${text.slice(0, 200)}...` : text
   return (
     <Grid item xs={6}>
       <Card>
@@ -61,7 +62,7 @@ const PostItem = ({
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {text}
+            {description}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>

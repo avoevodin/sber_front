@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Main from './components/Main/Main'
+import PostForm from './components/PostForm/PostForm'
 
 const App = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const App = () => (
     <Container maxWidth="md" className="container">
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/postform" element={<PostForm />} />
       </Routes>
     </Container>
   </BrowserRouter>

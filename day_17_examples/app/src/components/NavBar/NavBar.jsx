@@ -11,8 +11,19 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
+import { Link } from 'react-router-dom'
+import LinkMUI from '@mui/material/Link'
 
-const pages = ['Products', 'Pricing', 'Blog']
+const pages = [
+  {
+    title: 'Main',
+    path: '/ ',
+  },
+  {
+    title: 'Create new post',
+    path: '/postform',
+  },
+]
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
 const NavBar = () => {
@@ -77,9 +88,11 @@ const NavBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                <LinkMUI key={page.title} component={Link} to={page.path}>
+                  <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page.title}</Typography>
+                  </MenuItem>
+                </LinkMUI>
               ))}
             </Menu>
           </Box>
@@ -93,13 +106,15 @@ const NavBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <LinkMUI key={page.title} component={Link} to={page.path}>
+                <Button
+                  key={page.title}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.title }
+                </Button>
+              </LinkMUI>
             ))}
           </Box>
 
