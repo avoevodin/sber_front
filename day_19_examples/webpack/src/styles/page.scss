@@ -1,0 +1,9 @@
+$color: blue;
+
+.container {
+    height: 100vh;
+    .header {
+        height: 50vh;
+        background: $color ;
+    }
+}

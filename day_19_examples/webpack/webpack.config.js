@@ -11,13 +11,14 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
+                test: /\.s[ac]ss$/i,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {publicPath: ""}
                     },
-                    "css-loader"
+                    "css-loader",
+                    "sass-loader",
                 ],
             }
         ]
