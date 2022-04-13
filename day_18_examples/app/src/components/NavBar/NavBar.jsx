@@ -93,7 +93,7 @@ const NavBar = () => {
   const dispatch = useDispatch()
 
   const searchHandler = (e) => {
-    dispatch(setSearchValue(e.target.value.trim))
+    dispatch(setSearchValue(e.target.value.trim()))
   }
 
   return (
