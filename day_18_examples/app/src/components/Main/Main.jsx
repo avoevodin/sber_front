@@ -1,12 +1,9 @@
 import PostsList from '../PostsList/PostsList'
 
-const Main = () => {
-  console.log('hi')
-  return (
-    <div>
-      <PostsList />
-    </div>
-  )
-}
+const Main = () => (
+  <div>
+    <PostsList />
+  </div>
+)
 
 export default Main

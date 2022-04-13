@@ -16,6 +16,8 @@ import { styled, alpha } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setSearchValue } from '../../redux/actions/searchAC'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -88,6 +90,12 @@ const NavBar = () => {
     setAnchorElUser(null)
   }
 
+  const dispatch = useDispatch()
+
+  const searchHandler = (e) => {
+    dispatch(setSearchValue(e.target.value.trim))
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -108,6 +116,7 @@ const NavBar = () => {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={searchHandler}
             />
           </Search>
 
