@@ -6,14 +6,14 @@ const setPosts = (payload) => ({
   payload,
 })
 
-export const loadAllPosts = () => async (dispatch) => {
-  const res = await fetch('https://api.react-learning.ru/posts', {
+export const loadAllPosts = (searchValue = '') => async (dispatch) => {
+  const query = searchValue ? `/search/?query=${searchValue}` : ''
+  const res = await fetch(`https://api.react-learning.ru/posts${query}`, {
     headers: {
       authorization: `Bearer ${API_TOKEN}`,
     },
   })
   const dataFromAPI = await res.json()
-
   dispatch(setPosts(dataFromAPI))
 }
 
