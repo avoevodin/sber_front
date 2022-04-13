@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { API_TOKEN } from '../../constans'
 import { ADD_NEW_POST, SET_ALL_POSTS } from '../types/postTypes'
 
@@ -8,12 +9,24 @@ const setPosts = (payload) => ({
 
 export const loadAllPosts = (searchValue = '') => async (dispatch) => {
   const query = searchValue ? `/search/?query=${searchValue}` : ''
-  const res = await fetch(`https://api.react-learning.ru/posts${query}`, {
+
+  // const res = await fetch(`https://api.react-learning.ru/posts${query}`, {
+  //   headers: {
+  //     authorization: `Bearer ${API_TOKEN}`,
+  //   },
+  // })
+  const res = await axios.get('https://api.react-learning.ru/posts', {
+    params: {
+      query: searchValue,
+    },
     headers: {
       authorization: `Bearer ${API_TOKEN}`,
     },
   })
-  const dataFromAPI = await res.json()
+
+  // const dataFromAPI = await res.json()
+  const dataFromAPI = res.data
+
   dispatch(setPosts(dataFromAPI))
 }
 

@@ -2,7 +2,8 @@
 import { Grid } from '@mui/material'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import useDebounce from '../../hooks/useDebounce'
+// import useDebounce fro m '../../hooks/useDebounce'
+import useThrottle from '../../hooks/useThrottle'
 import { loadAllPosts } from '../../redux/actions/postAC'
 import PostItem from '../PostItem/PostItem'
 
@@ -10,11 +11,12 @@ const PostsList = () => {
   const dispatch = useDispatch()
   const posts = useSelector((store) => store.posts)
   const search = useSelector((store) => store.search)
-  const debouncedSearch = useDebounce(search, 500)
+  // const delayedSearch = useDebounce(search, 500)
+  const delayedSearch = useThrottle(search, 500)
 
   useEffect(() => {
-    dispatch(loadAllPosts(debouncedSearch))
-  }, [debouncedSearch])
+    dispatch(loadAllPosts(delayedSearch))
+  }, [delayedSearch])
 
   if (!posts.length) return (<div>Posts list is empty</div>)
 
