@@ -2,8 +2,9 @@ $color: blue;
 
 .container {
     height: 100vh;
+    display: flex;
     .header {
         height: 50vh;
-        background: $color ;
+        background: $color;
     }
 }
