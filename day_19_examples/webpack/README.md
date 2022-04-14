@@ -24,3 +24,6 @@ npm i -D css-loader mini-css-extract-plugin
 
 // webpack and webpack command line
 npm i -D webpack webpack-cli
+
+// webpack html template plugin
+npm i -D html-webpack-plugin
