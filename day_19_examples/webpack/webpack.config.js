@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const path = require('path')
 
 let mode = 'development'
 let target = 'web'
@@ -27,5 +28,14 @@ module.exports = {
         ]
     },
     target,
+    devtool: "source-map",
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
+        port: 3005, 
+        open: true,
+        hot: true,
+    },
     plugins: [new MiniCssExtractPlugin()],
 }

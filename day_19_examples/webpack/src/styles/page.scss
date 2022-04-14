@@ -1,10 +1,11 @@
-$color: blue;
+$color: yellow;
 
 .container {
     height: 100vh;
     display: flex;
     .header {
         height: 50vh;
+        color: white;
         background: $color;
     }
 }
