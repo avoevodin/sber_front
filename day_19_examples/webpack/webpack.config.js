@@ -24,10 +24,23 @@ module.exports = {
                     "postcss-loader",
                     "sass-loader",
                 ],
+            },
+            {
+                test: /\.jsx?/i,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        cacheDirectory: true,
+                    }
+                }
             }
         ]
     },
     target,
+    resolve: {
+        extensions: [".js", ".jsx"],
+    },
     devtool: "source-map",
     devServer: {
         static: {
