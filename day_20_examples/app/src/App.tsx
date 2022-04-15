@@ -3,7 +3,7 @@ import Header from './components/Header/Header'
 
 const App = () => (
   <div className="App">
-    <Header />
+    <Header title="Title in header" version={1} />
   </div>
 )
 
