@@ -31,4 +31,11 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
     'import/extensions': ['error', 'never', { svg: 'always' }],
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
 }
