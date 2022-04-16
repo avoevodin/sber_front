@@ -1,5 +1,7 @@
+type TodoId = string | number;
+
 export default interface Todo {
-    id: string | number;
+    id: TodoId;
     title: string;
     completed: boolean;
     text?: string;
