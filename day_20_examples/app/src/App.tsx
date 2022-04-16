@@ -51,7 +51,7 @@ const App = () => {
       <br />
       <br />
       {todos.map((todo) => (
-        <div key={todo.id} onClick={() => deleteHandler(todo.id)}>
+        <div key={todo.id}>
           Title:
           {' '}
           {todo.title}
@@ -67,6 +67,14 @@ const App = () => {
               {todo.text}
             </>
           )}
+          <br />
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => deleteHandler(todo.id)}
+          >
+            Delete
+          </button>
           <br />
           <br />
         </div>
